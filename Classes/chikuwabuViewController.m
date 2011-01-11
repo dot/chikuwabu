@@ -30,12 +30,20 @@
 */
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSURL *url = [NSURL URLWithString:@"http://api.twitter.com/1/statuses/user_timeline.json?screen_name=_dot"];
+	NSURLRequest *req = [NSURLRequest requestWithURL:url];
+	NSError *error = nil;
+	NSURLResponse *res;
+	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&error];
+	NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSLog(result);
+	[result release];
 }
-*/
+
 
 
 /*
