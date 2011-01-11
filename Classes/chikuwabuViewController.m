@@ -7,7 +7,7 @@
 //
 
 #import "chikuwabuViewController.h"
-
+#import "JSON.h"
 @implementation chikuwabuViewController
 
 
@@ -40,7 +40,15 @@
 	NSURLResponse *res;
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&res error:&error];
 	NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSLog(result);
+//	NSLog(result);
+
+	id jresult = [result JSONValue];
+	NSLog(@"classname: %@", NSStringFromClass([jresult class]));
+	if ([jresult isKindOfClass: [NSArray class]]) {
+		NSArray* arr = jresult;
+		NSLog(@"length: %d", [arr count]);
+		NSLog(@"last one: %@", [arr lastObject]);
+	}
 	[result release];
 }
 
